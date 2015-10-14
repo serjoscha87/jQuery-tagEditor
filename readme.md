@@ -10,8 +10,8 @@ https://github.com/Pixabay/jQuery-tagEditor<br />
 _Changes in comparision to the original:_
 
 **autocomplete**<br />
-Tags need to be valid: Valid tags are those that are suggested by the autocomplete and NOTHING more.
-This Version can prevent the user from choosing none-valid Tags / creating own ones.
+Tags need to be valid: Valid tags are those that are suggested by the autocomplete and **NOTHING** more.<br />
+This Version will therefore prevent the user from choosing none-valid Tags / typing in own ones.<br />
 This means **only** tags that are predefined and shown in the autocomplete menu can be chosen
 
 ```
