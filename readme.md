@@ -2,7 +2,6 @@ jQuery-tagEditor - Strict autocomplete tags
 ============================================
 
 This is a fork. For the original source and tribute go to
-
 https://goodies.pixabay.com/jquery/tag-editor/demo.html
 
 or
