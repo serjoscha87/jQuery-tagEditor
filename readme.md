@@ -1,12 +1,13 @@
 jQuery-tagEditor - Strict autocomplete tags
 ============================================
 
-This is a fork. For the original source and tribute go to<br />
+**This is a fork.**<br />
+For the original source and tribute go to<br />
 https://goodies.pixabay.com/jquery/tag-editor/demo.html<br />
 or<br />
 https://github.com/Pixabay/jQuery-tagEditor<br />
 
-Changes in comparision to the original:
+__Changes in comparision to the original:__
 
 **autocomplete**
 Tags need to be valid: Valid tags are those that are suggested by the autocomplete and NOTHING more.
