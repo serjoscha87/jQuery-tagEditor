@@ -104,7 +104,15 @@
                 set_placeholder();
             }
 
-            ed.click(function(e, closest_tag){
+            ed.click(function(e, closest_tag, source) {
+               if(o.check_autocomplete) {
+                  if(e.originalEvent === undefined) { // orginalEvent check makes sure its a real event, not a triggered one
+                     if(source !== 'autocomplete') 
+                        return;
+                     
+                  }
+               }
+               
                 var d, dist = 99999, loc;
 
                 // do not create tag when user selects tags by text selection
@@ -112,10 +120,10 @@
 
                 if (o.maxTags && ed.data('tags').length >= o.maxTags) { ed.find('input').blur(); return false; }
 
-                blur_result = true
+                blur_result = true;
                 $('input:focus', ed).blur();
                 if (!blur_result) return false;
-                blur_result = true
+                blur_result = true;
 
                 // always remove placeholder on click
                 $('.placeholder', ed).remove();
@@ -180,7 +188,7 @@
                         // extend user provided autocomplete select method
                         var ac_select = 'select'  in aco ? o.autocomplete.select : '';
                         aco.select = function(e, ui){ if (ac_select) ac_select(e, ui); setTimeout(function(){
-                            ed.trigger('click', [$('.active', ed).find('input').closest('li').next('li').find('.tag-editor-tag')]);
+                            ed.trigger('click', [$('.active', ed).find('input').closest('li').next('li').find('.tag-editor-tag'), 'autocomplete']);
                         }, 20); };
                         input.autocomplete(aco);
                     }
@@ -256,12 +264,13 @@
 
             // keypress delimiter
             var inp;
-            ed.on('keypress', 'input', function(e){
-                if (o.delimiter.indexOf(String.fromCharCode(e.which))>=0) {
-                    inp = $(this);
-                    setTimeout(function(){ split_cleanup(inp); }, 20);
-                }
-            });
+            if(!o.check_autocomplete)
+               ed.on('keypress', 'input', function(e){ 
+                   if (o.delimiter.indexOf(String.fromCharCode(e.which))>=0) {
+                       inp = $(this);
+                       setTimeout(function(){ split_cleanup(inp); }, 20);
+                   }
+               });
 
             ed.on('keydown', 'input', function(e){
                 var $t = $(this);
@@ -359,6 +368,7 @@
         animateDelete: 175,
         sortable: true, // jQuery UI sortable
         autocomplete: null, // options dict for jQuery UI autocomplete
+        check_autocomplete : true,
 
         // callbacks
         onChange: function(){},
